@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<project name="Fortune" default="dist">
+		<property name="src" location="src"/>
+		<property name="res" location="res"/>
+		<property name="lib" location="lib"/>
+		<property name="build" location="build"/>
+		<property name="dist" location="dist"/>
+
+		<property name="mainclass" value="Fortune"/>
+		<property name="jarfile" value="Fortune.jar"/>
+		
+  
+		<target name="init">
+		</target>
+
+		<target name="build" depends="init">
+			<mkdir dir="${build}"/>
+			<javac srcdir="${src}" destdir="${build}"/>
+			
+			<copy todir="${build}">
+				<fileset dir="${res}">
+				</fileset>
+			</copy>
+		</target>
+
+		<target name="dist" depends="build">
+			<mkdir dir="${dist}"/>
+			<jar basedir="${build}" destfile="${dist}/${jarfile}">
+				<manifest>
+					<attribute name="Main-Class"  value="${mainclass}"/>
+				</manifest>
+			</jar>
+			
+	
+		</target>
+		
+		
+		<target name="clean">
+			<delete dir="${dist}"/>
+			<delete dir="${build}"/>
+		</target>
+
+</project>
